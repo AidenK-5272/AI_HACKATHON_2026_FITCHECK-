@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitCheck</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">FitCheck</p>
+        <h1>Check job fit before you hit apply.</h1>
+        <p class="hero-text">
+          Paste your background, drop in a job description, and get a job-focused fit score with plain-language reasons and next steps.
+        </p>
+      </div>
+      <div class="hero-card">
+        <p class="hero-card-label">What this demo does</p>
+        <ul class="hero-list">
+          <li>Scores fit from 0 to 100</li>
+          <li>Explains the weighted breakdown</li>
+          <li>Highlights strengths and gaps</li>
+          <li>Suggests realistic next moves</li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="app-grid">
+      <section class="panel input-panel">
+        <div class="panel-header">
+          <h2>Analyze a role</h2>
+          <p>FitCheck is a decision-support tool. It compares what you bring today against what this job appears to need.</p>
+        </div>
+
+        <form id="fitcheck-form" novalidate>
+          <label class="field">
+            <span>Resume or background</span>
+            <textarea
+              id="resumeInput"
+              name="resumeInput"
+              rows="10"
+              placeholder="Paste resume text or a short summary of your experience, projects, coursework, tools, and responsibilities."
+            ></textarea>
+          </label>
+
+          <label class="field">
+            <span>Job description</span>
+            <textarea
+              id="jobInput"
+              name="jobInput"
+              rows="10"
+              placeholder="Paste the job description here. Include required skills, responsibilities, tools, and qualifications if possible."
+            ></textarea>
+          </label>
+
+          <label class="field">
+            <span>Current experience level</span>
+            <select id="experienceLevel" name="experienceLevel">
+              <option value="beginner">Beginner</option>
+              <option value="some experience">Some experience</option>
+              <option value="intermediate" selected>Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </label>
+
+          <div id="formError" class="form-error" aria-live="polite"></div>
+
+          <div class="actions">
+            <button type="submit" id="analyzeButton">Analyze Fit</button>
+            <button type="button" id="sampleButton" class="secondary">Load sample</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel results-panel" id="resultsPanel">
+        <div class="results-empty" id="emptyState">
+          <p class="results-kicker">Demo-ready output</p>
+          <h2>Your fit report will appear here.</h2>
+          <p>
+            You'll get an overall score, weighted category breakdown, fit band, what matches, what's missing, why it matters, and what to do next.
+          </p>
+        </div>
+
+        <div class="results-loading hidden" id="loadingState" aria-live="polite">
+          <div class="spinner"></div>
+          <p>Analyzing the role fit and building your recommendations...</p>
+        </div>
+
+        <div class="results-content hidden" id="resultsContent">
+          <div class="score-header">
+            <div>
+              <p class="results-kicker">Overall Fit Score</p>
+              <h2><span id="overallScore">0</span><span class="score-suffix">/100</span></h2>
+            </div>
+            <div class="fit-band" id="fitBand"></div>
+          </div>
+
+          <p class="score-summary" id="scoreSummary"></p>
+
+          <div class="breakdown-grid" id="breakdownGrid"></div>
+
+          <div class="result-section">
+            <h3>What Matches</h3>
+            <ul id="matchesList" class="result-list"></ul>
+          </div>
+
+          <div class="result-section">
+            <h3>What Is Missing</h3>
+            <ul id="missingList" class="result-list"></ul>
+          </div>
+
+          <div class="result-section">
+            <h3>Why It Matters</h3>
+            <ul id="whyList" class="result-list"></ul>
+          </div>
+
+          <div class="result-section">
+            <h3>What To Do Next</h3>
+            <ul id="nextStepsList" class="result-list"></ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./scoring.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
