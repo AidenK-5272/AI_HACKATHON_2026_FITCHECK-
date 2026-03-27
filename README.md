@@ -1,0 +1,2 @@
+# AI_HACKATHON_2026_FITCHECK-
+AI hackathon 2026
